@@ -1,0 +1,31 @@
+CREATE TABLE `users` (
+  `id` varchar(255) PRIMARY KEY,
+  `nickame` varchar(255),
+  `password` varchar(255)
+);
+
+CREATE TABLE `words` (
+  `id` varchar(255) PRIMARY KEY,
+  `name` varchar(255),
+  `title` varchar(255),
+  `description` text COMMENT 'Content of the post',
+  `writer` integer
+);
+
+CREATE TABLE `like` (
+  `id` integer PRIMARY KEY,
+  `word_id` integer,
+  `user_id` integer
+);
+
+CREATE TABLE `quiz` (
+  `id` integer PRIMARY KEY,
+  `quiz_question` varchar(255),
+  `quiz_answer` varchar(255)
+);
+
+ALTER TABLE `words` ADD FOREIGN KEY (`writer`) REFERENCES `users` (`id`);
+
+ALTER TABLE `like` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `like` ADD FOREIGN KEY (`word_id`) REFERENCES `words` (`id`);

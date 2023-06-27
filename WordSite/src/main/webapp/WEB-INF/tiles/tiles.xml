@@ -14,26 +14,26 @@
     
     <definition name="welcome" extends="base-Template"> 
         <put-attribute name="title" value="Welcome" />
-        <put-attribute name="heading" value="유행어 모음 사이트" />
+        <put-attribute name="heading" value="Slang" />
         <put-attribute name="subheading" value="Welcome to Slang" />
         <put-attribute name="content" value="/WEB-INF/views/welcome.jsp" />
     </definition>
 
-    <definition name="books" extends="base-Template">
+    <definition name="words" extends="base-Template">
         <put-attribute name="title" value="Words" />
         <put-attribute name="heading" value="유행어 목록" />
         <put-attribute name="subheading" value="Words List" />
         <put-attribute name="content" value="/WEB-INF/views/words.jsp" />
     </definition>
 
-    <definition name="book" extends="base-Template">
+    <definition name="word" extends="base-Template">
         <put-attribute name="title" value="Word" />
         <put-attribute name="heading" value="유행어 정보" />
         <put-attribute name="subheading" value="Word Details" />
         <put-attribute name="content" value="/WEB-INF/views/word.jsp" />
     </definition>
 
-    <definition name="addBook" extends="base-Template">
+    <definition name="addWord" extends="base-Template">
         <put-attribute name="title" value="Words" />
         <put-attribute name="heading" value="유행어 등록" />
         <put-attribute name="subheading" value="Word Addition" />
@@ -47,7 +47,7 @@
         <put-attribute name="content" value="/WEB-INF/views/login.jsp" />
     </definition>
 
-    <definition name="cart" extends="base-Template">
+    <definition name="mypage" extends="base-Template">
         <put-attribute name="title" value="My Page" />
         <put-attribute name="heading" value="마이페이지" />
         <put-attribute name="subheading" value="My Page" />

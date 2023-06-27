@@ -1,2 +1,2 @@
 <hr>
-<p>&copy; Book Market</p>
+<p>&copy; Slang</p>

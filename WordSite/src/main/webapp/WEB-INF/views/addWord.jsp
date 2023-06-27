@@ -11,14 +11,14 @@
 </head>
 <body>
 	<div class="container">
-		
-		
+			
 		<div class="float-right" style="padding-right:30px">
 			<a href="?language=ko">Korean</a>|<a href="?language=en">English</a>
 		</div>
 		
 		<br><br>
 		<fieldset>
+		<form:form modelAttribute="NewWord" class="form-horizontal" >
 		<legend><spring:message code="addWord.form.subtitle.label"/></legend>
 		<div class="form-group row">
 			<label class="col-sm-2 control-label">
@@ -62,6 +62,7 @@
 			</div>
 		</div>
 		</fieldset>
+		</form:form>
 	</div>
 </body>
 </html>

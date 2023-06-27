@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>Cart</title>
+<title>My Page</title>
 <head>
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 <script src="<c:url value="/resources/js/controller.js"/>"></script>

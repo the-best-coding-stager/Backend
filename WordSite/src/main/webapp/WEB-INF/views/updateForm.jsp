@@ -11,6 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-7">
+        	<form:form modelAttribute="updateWord" action="./update?${_csrf.parameterName}=${_csrf.token}" class="form-horizontal">
             <fieldset>
                 <div class="form-group row">
                     <label class="col-sm-2 control-label" >단어명</label>
@@ -44,6 +45,7 @@
                     </div>
                 </div>
             </fieldset>
+            </form:form>
     </div>
     </div>
     </div>

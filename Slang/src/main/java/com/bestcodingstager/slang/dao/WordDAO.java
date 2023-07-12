@@ -10,6 +10,10 @@ import com.bestcodingstager.slang.dto.Word;
 public interface WordDAO {
 	
 	List<Word> getAllWordList();
-	Word getWordById(String writer_id);
-
+	Word getWordByWriterId(String writer_id);
+	Word getWordById(Integer id);
+	Word getWordByName(String name);
+	void addWord(Word word);
+	void updateWord(Integer id, Word word);
+	void deleteWord(Integer id);
 }

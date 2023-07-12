@@ -7,6 +7,13 @@ import com.bestcodingstager.slang.dto.Word;
 public interface WordService {
 
 	List<Word> getAllWords();
-	Word getWordById(String writer_id);
+	Word getWordByWriterId(String writer_id);
+	String getAddWord();
+	Word getWordById(Integer id);
+	String getSearch();
+	Word searchWordByName(String name);
+	void addWord(Word word);
+	Word updateWord(Integer id, Word word);
+	void deleteWord(Integer id);
 
 }

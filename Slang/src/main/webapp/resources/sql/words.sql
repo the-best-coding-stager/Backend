@@ -2,7 +2,7 @@ charset utf8;
 USE springmvcDB;
 
 CREATE TABLE IF NOT EXISTS words(
-    id INTEGER NOT NULL,
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     title VARCHAR(255),
     description TEXT,

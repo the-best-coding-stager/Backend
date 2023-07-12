@@ -2,7 +2,7 @@ charset utf8;
 USE springmvcDB;
 
 CREATE TABLE IF NOT EXISTS users(
-    id VARCHAR(255) NOT NULL,
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
     nickname VARCHAR(255),
     password VARCHAR(255)
 )DEFAULT CHARSET=utf8;

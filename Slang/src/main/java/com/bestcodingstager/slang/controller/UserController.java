@@ -18,8 +18,10 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	/*
 	@GetMapping(path="/users")
 	public List<User> userTest() {
 		return service.getAllUsers();
 	}
+	*/
 }

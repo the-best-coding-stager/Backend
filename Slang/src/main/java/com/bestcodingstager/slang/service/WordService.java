@@ -9,9 +9,9 @@ public interface WordService {
 	List<Word> getAllWordList();
 	Word getWordByWriterId(String writer_id);
 	Word getWordById(Integer id);
-	Word searchWordByName(String name);
+	List<Word> getWordsByName(String name);
 	void addWord(Word word);
-	Word updateWord(Word word);
+	void updateWord(Word word);
 	void deleteWord(Integer id);
 
 }

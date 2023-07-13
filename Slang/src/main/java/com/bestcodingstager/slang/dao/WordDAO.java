@@ -8,11 +8,10 @@ import com.bestcodingstager.slang.dto.Word;
 
 @Repository
 public interface WordDAO {
-	
 	List<Word> getAllWordList();
 	Word getWordByWriterId(String writer_id);
 	Word getWordById(Integer id);
-	Word getWordByName(String name);
+	List<Word> getWordsByName(String name);
 	void addWord(Word word);
 	void updateWord(Word word);
 	void deleteWord(Integer id);

@@ -34,32 +34,20 @@ public class WordServiceImpl implements WordService{
 		return "search";
 	}
 
-	public Word searchWordByName(String name) {
-		return dao.getWordByName(name);
+	public List<Word> getWordsByName(String name) {
+		return dao.getWordsByName(name);
 	}
 
 	public void addWord(Word word) {
 		dao.addWord(word);
-		return ;
 	}
 
-	public Word updateWord(Word word) {
-		Word updatedWord = new Word();
-		
+	public void updateWord(Word word) {
 		dao.updateWord(word);
-		
-		updatedWord.setId(word.getId());
-		updatedWord.setName(word.getName());
-		updatedWord.setTitle(word.getTitle());
-		updatedWord.setDescription(word.getDescription());
-		updatedWord.setWriter_id(word.getWriter_id());
-		
-		return updatedWord;
 	}
 
 	public void deleteWord(Integer id) {
 		dao.deleteWord(id);
-		return ;
 	}
 
 }

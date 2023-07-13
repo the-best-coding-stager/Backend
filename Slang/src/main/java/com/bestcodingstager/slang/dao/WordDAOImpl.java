@@ -1,5 +1,6 @@
 package com.bestcodingstager.slang.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -17,6 +18,8 @@ private JdbcTemplate template;
 	public void setJdbcTemplate(DataSource dataSource) {
 		this.template = new JdbcTemplate(dataSource);
 	}
+	
+	private List<Word> listOfWords = new ArrayList<Word>();
 
 	public List<Word> getAllWordList() {
 		String SQL = "SELECT * FROM words";
@@ -46,15 +49,12 @@ private JdbcTemplate template;
 		return wordInfo;
 	}
 
-	public Word getWordByName(String name) {
+	public List<Word> getWordsByName(String name) {
+		List<Word> wordsByName = new ArrayList<Word>();
 		Word wordInfo = null;
-		String SQL = "SELECT count(*) FROM words name = ?";
-		int rowCount = template.queryForObject(SQL, Integer.class, name);
-		if (rowCount != 0) {
-			SQL = "SELECT * FROM words where name = ?";
-			wordInfo = template.queryForObject(SQL, new Object[] {name}, new WordRowMapper());
-		}
-		return wordInfo;
+		String SQL = "SELECT * FROM words where name LIKE '%" + name + "%'";
+		wordsByName = template.query(SQL, new WordRowMapper());
+		return wordsByName;
 	}
 
 	public void addWord(Word word) {

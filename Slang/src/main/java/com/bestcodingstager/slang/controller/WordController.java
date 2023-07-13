@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bestcodingstager.slang.dto.Word;
+import com.bestcodingstager.slang.exception.SearchException;
 import com.bestcodingstager.slang.service.WordService;
 
 @RestController
@@ -82,14 +83,14 @@ public class WordController {
 		return "redirect:/words";
 	}
 	
-	@GetMapping(path="/search")
-	public String getSearch() {
-		return "search";
-	}
-	
 	@GetMapping(path="/search?name={name}")
-	public Word search(@PathVariable String name) {
-		return service.searchWordByName(name);
+	public String requestBooksByName(@PathVariable String name, Model model) {
+		List<Word> wordsByName = service.getWordsByName(name);
+		if (wordsByName == null || wordsByName.isEmpty()) {
+			throw new SearchException();
+		}
+		model.addAttribute("wordList", wordsByName);
+		return "search";
 	}
 
 }

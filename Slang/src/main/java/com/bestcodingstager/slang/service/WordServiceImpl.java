@@ -3,16 +3,18 @@ package com.bestcodingstager.slang.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bestcodingstager.slang.dao.WordDAO;
 import com.bestcodingstager.slang.dto.Word;
 
+@Service
 public class WordServiceImpl implements WordService{
 	
 	@Autowired
 	private WordDAO dao;
 
-	public List<Word> getAllWords() {
+	public List<Word> getAllWordList() {
 		return dao.getAllWordList();
 	}
 	

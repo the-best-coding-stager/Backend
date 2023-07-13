@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bestcodingstager.slang.dto.Word;
 import com.bestcodingstager.slang.service.WordService;
@@ -18,21 +19,23 @@ import com.bestcodingstager.slang.service.WordService;
 @RestController
 public class WordController {
 	
-	@Autowired(required=false)
+	@Autowired
 	private WordService service;
 	
 	@GetMapping()
 	public String requestWordList(Model model){
-		List<Word> list = service.getAllWords();
+		List<Word> list = service.getAllWordList();
 		model.addAttribute("wordList", list);
 		return "words";
 	}
 	
 	@GetMapping(path="/words")
-	public String requestAllWords(Model model){
-		List<Word> list = service.getAllWords();
-		model.addAttribute("wordList", list);
-		return "words";
+	public ModelAndView requestAllWords(){
+		ModelAndView modelAndView = new ModelAndView();
+		List<Word> list = service.getAllWordList();
+		modelAndView.addObject("wordList", list);
+		modelAndView.setViewName("words");
+		return modelAndView;
 	}
 	
 	@GetMapping(path="/words/{writer_id}")

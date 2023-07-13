@@ -6,7 +6,7 @@ import com.bestcodingstager.slang.dto.Word;
 
 public interface WordService {
 
-	List<Word> getAllWords();
+	List<Word> getAllWordList();
 	Word getWordByWriterId(String writer_id);
 	String getAddWord();
 	Word getWordById(Integer id);

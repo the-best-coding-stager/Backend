@@ -3,6 +3,7 @@ package com.bestcodingstager.slang.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,12 +18,21 @@ import com.bestcodingstager.slang.service.WordService;
 @RestController
 public class WordController {
 	
-	// @Autowired
+	@Autowired(required=false)
 	private WordService service;
 	
+	@GetMapping()
+	public String requestWordList(Model model){
+		List<Word> list = service.getAllWords();
+		model.addAttribute("wordList", list);
+		return "words";
+	}
+	
 	@GetMapping(path="/words")
-	public List<Word> getAllWords(){
-		return service.getAllWords();
+	public String requestAllWords(Model model){
+		List<Word> list = service.getAllWords();
+		model.addAttribute("wordList", list);
+		return "words";
 	}
 	
 	@GetMapping(path="/words/{writer_id}")

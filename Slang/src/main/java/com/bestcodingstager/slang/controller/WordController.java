@@ -77,7 +77,7 @@ public class WordController {
 	}
 	
 	@DeleteMapping(path="/words/word?id={id}")
-	public String deleteWord(@PathVariable Integer id) {
+	public String getDeleteWordForm(Model model, @PathVariable Integer id) {
 		service.deleteWord(id);
 		return "redirect:/words";
 	}

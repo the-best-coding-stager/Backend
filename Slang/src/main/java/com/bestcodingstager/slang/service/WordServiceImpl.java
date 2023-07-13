@@ -11,7 +11,7 @@ import com.bestcodingstager.slang.dto.Word;
 @Service
 public class WordServiceImpl implements WordService{
 	
-	@Autowired
+	// @Autowired
 	private WordDAO dao;
 
 	public List<Word> getAllWordList() {

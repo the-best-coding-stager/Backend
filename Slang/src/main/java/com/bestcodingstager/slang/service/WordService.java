@@ -8,12 +8,10 @@ public interface WordService {
 
 	List<Word> getAllWordList();
 	Word getWordByWriterId(String writer_id);
-	String getAddWord();
 	Word getWordById(Integer id);
-	String getSearch();
 	Word searchWordByName(String name);
 	void addWord(Word word);
-	Word updateWord(Integer id, Word word);
+	Word updateWord(Word word);
 	void deleteWord(Integer id);
 
 }

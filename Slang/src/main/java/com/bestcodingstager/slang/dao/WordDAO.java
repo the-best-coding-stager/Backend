@@ -14,6 +14,6 @@ public interface WordDAO {
 	Word getWordById(Integer id);
 	Word getWordByName(String name);
 	void addWord(Word word);
-	void updateWord(Integer id, Word word);
+	void updateWord(Word word);
 	void deleteWord(Integer id);
 }

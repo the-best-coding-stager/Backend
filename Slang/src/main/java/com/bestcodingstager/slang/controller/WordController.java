@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,8 +46,8 @@ public class WordController {
 	}
 	
 	@GetMapping(path="/words/add")
-	public String getAddWord() {
-		return service.getAddWord();
+	public String requestAddWordForm(@ModelAttribute("NewWord") Word word) {
+		return "addWord";
 	}
 	
 	@PostMapping(path="/words/add")
@@ -55,13 +57,23 @@ public class WordController {
 	}
 	
 	@GetMapping(path="/words/word?id={id}")
-	public Word getWord(@PathVariable Integer id) {
-		return service.getWordById(id);
+	public String requestWordById(@PathVariable Integer id, Model model) {
+		Word wordById = service.getWordById(id);
+		model.addAttribute("word", wordById);
+		return "word";
 	}
 	
-	@PatchMapping(path="/words/word?id={id}")
-	public String updateWord(@PathVariable Integer id, @RequestBody Word word) {
-		return "redirect:/words/word?id={id}";
+	@GetMapping("/words/update")  
+    public String getUpdateWordForm(@ModelAttribute("updateWord") Word word, @RequestParam("id") Integer wordId, Model model) {
+		Word wordById = service.getWordById(wordId);
+        model.addAttribute("book", wordById);
+        return "updateForm";
+    }  
+	
+	@PatchMapping(path="/words/update")
+	public String submitUpdateWordForm(@ModelAttribute("updateWord") Word word) {
+		service.updateWord(word);
+		return "redirect:/words";
 	}
 	
 	@DeleteMapping(path="/words/word?id={id}")
@@ -72,7 +84,7 @@ public class WordController {
 	
 	@GetMapping(path="/search")
 	public String getSearch() {
-		return service.getSearch();
+		return "search";
 	}
 	
 	@GetMapping(path="/search?name={name}")

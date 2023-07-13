@@ -43,11 +43,12 @@ public class WordServiceImpl implements WordService{
 		return ;
 	}
 
-	public Word updateWord(Integer id, Word word) {
+	public Word updateWord(Word word) {
 		Word updatedWord = new Word();
 		
-		dao.updateWord(id, word);
+		dao.updateWord(word);
 		
+		updatedWord.setId(word.getId());
 		updatedWord.setName(word.getName());
 		updatedWord.setTitle(word.getTitle());
 		updatedWord.setDescription(word.getDescription());

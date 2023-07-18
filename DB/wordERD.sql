@@ -1,0 +1,32 @@
+CREATE TABLE users (
+	user_id VARCHAR(255) NOT NULL,
+	nickname VARCHAR(255) NULL DEFAULT NULL,
+	password VARCHAR(255) NOT NULL,
+	PRIMARY KEY (user_id) USING BTREE
+);
+
+CREATE TABLE words (
+	word_id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	description TEXT NULL DEFAULT NULL,
+	writer_id VARCHAR(255) NOT NULL,
+  viewcount INT NULL DEFAULT NULL,
+  likes INT NULL DEFAULT NULL,
+  written_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (word_id) USING BTREE
+);
+
+CREATE TABLE likes (
+  id INT NOT NULL AUTO_INCREMENT,
+  word_id INT NOT NULL,
+  user_id varchar(255) NOT NULL,
+	PRIMARY KEY (id) USING BTREE
+);
+
+ALTER TABLE words ADD FOREIGN KEY (writer_id) REFERENCES users (user_id);
+
+ALTER TABLE likes ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+ALTER TABLE likes ADD FOREIGN KEY (word_id) REFERENCES words (word_id);
+ 

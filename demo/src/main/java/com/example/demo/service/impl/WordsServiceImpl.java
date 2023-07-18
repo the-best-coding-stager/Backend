@@ -1,18 +1,19 @@
-package com.bestcodingstager.slang.service;
+package com.example.demo.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bestcodingstager.slang.dao.WordDAO;
-import com.bestcodingstager.slang.dto.Word;
+import com.example.demo.dao.WordsDAO;
+import com.example.demo.dto.Word;
+import com.example.demo.service.WordsService;
 
 @Service
-public class WordServiceImpl implements WordService{
+public class WordsServiceImpl implements WordsService{
 	
 	// @Autowired
-	private WordDAO dao;
+	private WordsDAO dao;
 
 	public List<Word> getAllWordList() {
 		return dao.getAllWordList();
@@ -26,8 +27,8 @@ public class WordServiceImpl implements WordService{
 		return "addWord";
 	}
 
-	public Word getWordById(Integer id) {
-		return dao.getWordById(id);
+	public Word getWordById(Integer word_id) {
+		return dao.getWordById(word_id);
 	}
 
 	public String getSearch() {
@@ -46,8 +47,8 @@ public class WordServiceImpl implements WordService{
 		dao.updateWord(word);
 	}
 
-	public void deleteWord(Integer id) {
-		dao.deleteWord(id);
+	public void deleteWord(Integer word_id) {
+		dao.deleteWord(word_id);
 	}
 
 }

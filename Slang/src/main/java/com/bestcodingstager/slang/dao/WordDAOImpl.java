@@ -7,9 +7,11 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.bestcodingstager.slang.dto.Word;
 
+@Repository
 public class WordDAOImpl implements WordDAO{
 	
 private JdbcTemplate template;
@@ -18,8 +20,6 @@ private JdbcTemplate template;
 	public void setJdbcTemplate(DataSource dataSource) {
 		this.template = new JdbcTemplate(dataSource);
 	}
-	
-	private List<Word> listOfWords = new ArrayList<Word>();
 
 	public List<Word> getAllWordList() {
 		String SQL = "SELECT * FROM words";
@@ -27,15 +27,11 @@ private JdbcTemplate template;
 		return listOfWords;
 	}
 
-	public Word getWordByWriterId(String writer_id) {
-		Word wordInfo = null;
+	public List<Word> getWordsByWriterId(String writer_id) {
+		List<Word> wordsByWriterId = new ArrayList<Word>();
 		String SQL = "SELECT count(*) FROM words where writer_id = ?";
-		int rowCount = template.queryForObject(SQL, Integer.class, writer_id);
-		if (rowCount != 0) {
-			SQL = "SELECT * FROM words where writer_id = ?";
-			wordInfo = template.queryForObject(SQL, new Object[] {writer_id}, new WordRowMapper());
-		}
-		return wordInfo;
+		wordsByWriterId = template.query(SQL, new WordRowMapper());
+		return wordsByWriterId;
 	}
 
 	public Word getWordById(Integer id) {
@@ -51,7 +47,6 @@ private JdbcTemplate template;
 
 	public List<Word> getWordsByName(String name) {
 		List<Word> wordsByName = new ArrayList<Word>();
-		Word wordInfo = null;
 		String SQL = "SELECT * FROM words where name LIKE '%" + name + "%'";
 		wordsByName = template.query(SQL, new WordRowMapper());
 		return wordsByName;

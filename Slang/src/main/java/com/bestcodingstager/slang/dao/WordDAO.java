@@ -6,10 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import com.bestcodingstager.slang.dto.Word;
 
-@Repository
 public interface WordDAO {
 	List<Word> getAllWordList();
-	Word getWordByWriterId(String writer_id);
+	List<Word> getWordsByWriterId(String writer_id);
 	Word getWordById(Integer id);
 	List<Word> getWordsByName(String name);
 	void addWord(Word word);

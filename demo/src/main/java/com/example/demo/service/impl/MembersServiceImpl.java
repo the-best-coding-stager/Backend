@@ -14,10 +14,6 @@ public class MembersServiceImpl implements MembersService {
 	
 	@Autowired
 	private MembersDAO dao;
-	
-	public List<Member> testMember() {
-		return dao.testMember();
-	}
 
 	public List<Member> getAllMembers() {
 		return dao.getAllMembers();

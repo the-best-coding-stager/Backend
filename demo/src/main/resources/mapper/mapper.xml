@@ -2,9 +2,6 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.dao.MembersDAO">
-	<select id="testMember" resultType="com.example.demo.dto.Member">
-		SELECT * FROM members
-	</select>
 	<select id="getAllMembers" resultType="com.example.demo.dto.Member">
 		SELECT * FROM members
 	</select>
@@ -17,7 +14,7 @@
 		INSERT INTO
 			members (name, age, dept)
 		VALUES
-			(#{name}, #{age},#{dept})
+			(#{name}, #{age}, #{dept})
 	</insert>
 	<update id="updateMember">
 		UPDATE

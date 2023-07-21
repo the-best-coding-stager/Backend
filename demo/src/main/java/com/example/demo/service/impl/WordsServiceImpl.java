@@ -12,27 +12,19 @@ import com.example.demo.service.WordsService;
 @Service
 public class WordsServiceImpl implements WordsService{
 	
-	// @Autowired
+	@Autowired
 	private WordsDAO dao;
 
 	public List<Word> getAllWordList() {
 		return dao.getAllWordList();
 	}
-	
-	public List<Word> getWordsByWriterId(String writer_id) {
-		return dao.getWordsByWriterId(writer_id);
-	}
-
-	public String getAddWord() {
-		return "addWord";
-	}
 
 	public Word getWordById(Integer word_id) {
 		return dao.getWordById(word_id);
 	}
-
-	public String getSearch() {
-		return "search";
+	
+	public List<Word> getWordsByWriterId(String writer_id) {
+		return dao.getWordsByWriterId(writer_id);
 	}
 
 	public List<Word> getWordsByName(String name) {
@@ -43,8 +35,8 @@ public class WordsServiceImpl implements WordsService{
 		dao.addWord(word);
 	}
 
-	public void updateWord(Word word) {
-		dao.updateWord(word);
+	public void updateWord(Integer word_id, Word word) {
+		dao.updateWord(word_id, word);
 	}
 
 	public void deleteWord(Integer word_id) {

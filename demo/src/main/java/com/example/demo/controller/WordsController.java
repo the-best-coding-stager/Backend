@@ -24,23 +24,18 @@ public class WordsController {
 	private WordsService wordService;
 	
 	@GetMapping
-	public List<Word> requestWordList(){
-		return wordService.getAllWordList();
-	}
-	
-	@GetMapping(path="/")
 	public List<Word> requestAllWords(){
 		return wordService.getAllWordList();
 	}
 	
-	@GetMapping(path="?{writer_id}")
-	public List<Word> getWordByWriterId(@PathVariable String writer_id) {
-		return wordService.getWordsByWriterId(writer_id);
+	@GetMapping(path="/word_id={word_id}")
+	public Word requestWordById(@PathVariable Integer word_id) {
+		return wordService.getWordById(word_id);
 	}
 	
-	@GetMapping(path="/add")
-	public String requestAddWordForm(Word word) {
-		return "addWord";
+	@GetMapping(path="/writer_id={writer_id}")
+	public List<Word> getWordByWriterId(@PathVariable String writer_id) {
+		return wordService.getWordsByWriterId(writer_id);
 	}
 	
 	@PostMapping(path="/add")
@@ -49,27 +44,23 @@ public class WordsController {
 		return word;
 	}
 	
-	@GetMapping(path="?word_id={word_id}")
-	public Word requestWordById(@PathVariable Integer word_id) {
-		return wordService.getWordById(word_id);
-	}
-	
-	@GetMapping("/update")  
+	@GetMapping(path="/update")  
     public Word getUpdateWordForm(Word word, @RequestParam("word_id") Integer word_id) {
         return wordService.getWordById(word_id);
     }  
 	
 	@PatchMapping(path="/update")
 	public void submitUpdateWordForm(@RequestBody Word word) {
-		wordService.updateWord(word);
+		Integer word_id = word.getWord_id();
+		wordService.updateWord(word_id, word);
 	}
 	
-	@DeleteMapping(path="?word_id={word_id}")
+	@DeleteMapping(path="/word_id={word_id}")
 	public void getDeleteWordForm(@PathVariable Integer word_id) {
 		wordService.deleteWord(word_id);
 	}
 	
-	@GetMapping(path="?name={name}")
+	@GetMapping(path="/name={name}")
 	public List<Word> requestBooksByName(@PathVariable String name) {
 		return wordService.getWordsByName(name);
 	}

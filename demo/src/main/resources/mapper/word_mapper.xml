@@ -16,19 +16,21 @@
 	</select>
 	
 	<select id="getWordsByName" parameterType="String" resultType="com.example.demo.dto.Word">
-		SELECT * FROM words WHERE name LIKE '%#{writer_id}%'
+		SELECT * FROM words WHERE name LIKE '%#{name}%'
 	</select>
 	
-	<insert id="addWord" parameterType="com.example.demo.dto.Word">
+	<insert id="addWord"
+	parameterType="com.example.demo.dto.Word"
+	useGeneratedKeys="true" keyProperty="word_id">>
 		INSERT INTO
-			members (name, title, description, writer_id)
+			words (name, title, description, writer_id)
 		VALUES
 			(#{name}, #{title}, #{description}, #{writer_id})		
 	</insert>
 
 	<update id="updateWord">
 		UPDATE
-		    members
+		    words
 		SET
 		    name = #{word.name}, title = #{word.title}, description= #{word.description}
 		WHERE

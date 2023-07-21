@@ -9,44 +9,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.Member;
 import com.example.demo.service.MembersService;
 
 @RestController
+@RequestMapping("/members")
 public class MembersController {
 	
 	@Autowired
 	private MembersService service;
 	
-	@GetMapping(path="/test")
-	public List<Member> memberTest() {
-		return service.testMember();
-	}
-	
-	@GetMapping(path="/members")
+	@GetMapping
 	public List<Member> getAllMembers() {
 		return service.getAllMembers();
 	}
 	
-	@GetMapping(path="/members/{id}")
+	@GetMapping(path="/{id}")
 	public Member getMember(@PathVariable Integer id) {
 		return service.getMember(id);
 	}
 	
-	@PostMapping(path="/members")
+	@PostMapping
 	public Member insertMember(@RequestBody Member member) {
 		service.insertMember(member);
 		return member;
 	}
 	
-	@PutMapping(path="/members/{id}")
+	@PutMapping(path="/{id}")
 	public Member updateMember(@PathVariable Integer id, @RequestBody Member member) {
 		return service.updateMember(id, member);
 	}
 	
-	@DeleteMapping(path="/members/{id}")
+	@DeleteMapping(path="/{id}")
 	public Integer deleteMember(@PathVariable Integer id) {
 		return service.deleteMember(id);
 	}

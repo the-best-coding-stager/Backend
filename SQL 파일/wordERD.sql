@@ -3,7 +3,7 @@ CREATE TABLE users (
 	nickname VARCHAR(255) NULL DEFAULT NULL,
 	password VARCHAR(255) NOT NULL,
 	PRIMARY KEY (user_id) USING BTREE
-);
+) charset = utf8;
 
 CREATE TABLE words (
 	word_id INT NOT NULL AUTO_INCREMENT,
@@ -15,7 +15,7 @@ CREATE TABLE words (
   likes INT NULL DEFAULT NULL,
   written_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (word_id) USING BTREE
-);
+) charset = utf8;
 
 CREATE TABLE likes (
   id INT NOT NULL AUTO_INCREMENT,
@@ -31,3 +31,4 @@ ALTER TABLE likes ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
 ALTER TABLE likes ADD FOREIGN KEY (word_id) REFERENCES words (word_id);
  
 ALTER DATABASE springmvcdb DEFAULT CHARACTER SET utf8 ;
+

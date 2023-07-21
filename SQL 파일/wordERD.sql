@@ -23,12 +23,6 @@ CREATE TABLE likes (
   user_id varchar(255) NOT NULL,
 	PRIMARY KEY (id) USING BTREE
 );
-
-ALTER TABLE words ADD FOREIGN KEY (writer_id) REFERENCES users (user_id);
-
-ALTER TABLE likes ADD FOREIGN KEY (user_id) REFERENCES users (user_id);
-
-ALTER TABLE likes ADD FOREIGN KEY (word_id) REFERENCES words (word_id);
  
 ALTER DATABASE springmvcdb DEFAULT CHARACTER SET utf8 ;
 

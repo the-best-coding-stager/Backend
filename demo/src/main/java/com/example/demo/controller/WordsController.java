@@ -62,6 +62,7 @@ public class WordsController {
 	
 	@GetMapping(path="/name={name}")
 	public List<Word> requestBooksByName(@PathVariable String name) {
+		System.out.println(name);
 		return wordService.getWordsByName(name);
 	}
 

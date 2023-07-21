@@ -16,7 +16,7 @@
 	</select>
 	
 	<select id="getWordsByName" parameterType="String" resultType="com.example.demo.dto.Word">
-		SELECT * FROM words WHERE name LIKE '%#{name}%'
+		SELECT * FROM words WHERE name LIKE CONCAT('%', #{name}, '%')
 	</select>
 	
 	<insert id="addWord"

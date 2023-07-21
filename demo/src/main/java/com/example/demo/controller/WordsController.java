@@ -44,11 +44,6 @@ public class WordsController {
 		return word;
 	}
 	
-	@GetMapping(path="/update")  
-    public Word getUpdateWordForm(Word word, @RequestParam("word_id") Integer word_id) {
-        return wordService.getWordById(word_id);
-    }  
-	
 	@PatchMapping(path="/update")
 	public void submitUpdateWordForm(@RequestBody Word word) {
 		Integer word_id = word.getWord_id();
@@ -62,7 +57,6 @@ public class WordsController {
 	
 	@GetMapping(path="/name={name}")
 	public List<Word> requestBooksByName(@PathVariable String name) {
-		System.out.println(name);
 		return wordService.getWordsByName(name);
 	}
 

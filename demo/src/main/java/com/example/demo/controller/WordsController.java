@@ -19,7 +19,6 @@ import com.example.demo.service.WordsService;
 @RestController
 @RequestMapping("/api/words")
 public class WordsController {
-	
 	@Autowired
 	private WordsService wordService;
 	

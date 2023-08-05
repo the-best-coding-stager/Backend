@@ -12,7 +12,6 @@ import com.example.demo.service.WordsService;
 
 @Service
 public class WordsServiceImpl implements WordsService{
-	
 	@Autowired
 	private WordsDAO dao;
 

@@ -17,7 +17,7 @@ import com.example.demo.dto.Word;
 import com.example.demo.service.WordsService;
 
 @RestController
-@RequestMapping("/words")
+@RequestMapping("/api/words")
 public class WordsController {
 	
 	@Autowired

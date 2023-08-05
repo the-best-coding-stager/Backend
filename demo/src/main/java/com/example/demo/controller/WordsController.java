@@ -25,11 +25,11 @@ public class WordsController {
 	@GetMapping
 	public HashMap<String, List<Word>> requestAllWords(){
 		HashMap<String, List<Word>> data = new HashMap<String, List<Word>>();
-		List<Word> popularList = wordService.getPopularWordsList();
 		List<Word> newestList = wordService.getNewestWordsList();
+		List<Word> popularList = wordService.getPopularWordsList();
 		List<Word> wordList = wordService.getAllWordsList();
 		
-		data = wordService.merge(popularList, newestList, wordList);
+		data = wordService.merge(newestList, popularList, wordList);
 		return data;
 	}
 	

@@ -42,8 +42,8 @@ public class WordsServiceImpl implements WordsService{
 	public HashMap<String, List<Word>> merge(List<Word> popularList, List<Word> newestList, List<Word> wordList) {
 		@SuppressWarnings("serial")
 		HashMap<String, List<Word>> result = new HashMap<String, List<Word>>() {{
-			put("popularList", popularList);
 			put("newestList", newestList);
+			put("popularList", popularList);
 			put("wordList", wordList);
 		}};
 		

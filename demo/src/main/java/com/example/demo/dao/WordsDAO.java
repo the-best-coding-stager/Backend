@@ -9,7 +9,9 @@ import com.example.demo.dto.Word;
 
 @Repository
 public interface WordsDAO {
-	List<Word> getAllWordList();
+	List<Word> getAllWordsList();
+	List<Word> getPopularWordsList();
+	List<Word> getNewestWordsList();
 	Word getWordById(Integer word_id);
 	List<Word> getWordsByWriterId(String writer_id);
 	List<Word> getWordsByName(String name);

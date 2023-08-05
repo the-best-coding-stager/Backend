@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,16 @@ public class WordsServiceImpl implements WordsService{
 	@Autowired
 	private WordsDAO dao;
 
-	public List<Word> getAllWordList() {
-		return dao.getAllWordList();
+	public List<Word> getAllWordsList() {
+		return dao.getAllWordsList();
+	}
+
+	public List<Word> getPopularWordsList() {
+		return dao.getPopularWordsList();
+	}
+
+	public List<Word> getNewestWordsList() {
+		return dao.getNewestWordsList();
 	}
 
 	public Word getWordById(Integer word_id) {
@@ -30,6 +39,17 @@ public class WordsServiceImpl implements WordsService{
 	public List<Word> getWordsByName(String name) {
 		return dao.getWordsByName(name);
 	}
+	
+	public HashMap<String, List<Word>> merge(List<Word> popularList, List<Word> newestList, List<Word> wordList) {
+		@SuppressWarnings("serial")
+		HashMap<String, List<Word>> result = new HashMap<String, List<Word>>() {{
+			put("popularList", popularList);
+			put("newestList", newestList);
+			put("wordList", wordList);
+		}};
+		
+		return result;
+	}
 
 	public void addWord(Word word) {
 		dao.addWord(word);
@@ -42,5 +62,4 @@ public class WordsServiceImpl implements WordsService{
 	public void deleteWord(Integer word_id) {
 		dao.deleteWord(word_id);
 	}
-
 }

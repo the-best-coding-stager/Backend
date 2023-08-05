@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.Word;
@@ -24,8 +24,14 @@ public class WordsController {
 	private WordsService wordService;
 	
 	@GetMapping
-	public List<Word> requestAllWords(){
-		return wordService.getAllWordList();
+	public HashMap<String, List<Word>> requestAllWords(){
+		HashMap<String, List<Word>> data = new HashMap<String, List<Word>>();
+		List<Word> popularList = wordService.getPopularWordsList();
+		List<Word> newestList = wordService.getNewestWordsList();
+		List<Word> wordList = wordService.getAllWordsList();
+		
+		data = wordService.merge(popularList, newestList, wordList);
+		return data;
 	}
 	
 	@GetMapping(path="/word_id={word_id}")

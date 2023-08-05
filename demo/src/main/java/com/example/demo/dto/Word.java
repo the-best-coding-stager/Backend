@@ -1,10 +1,8 @@
 package com.example.demo.dto;
 
 public class Word {
-	
 	private Integer word_id;
 	private String name;
-	private String title;
 	private String description;
 	private String writer_id;
 	private Integer viewcount;
@@ -29,14 +27,6 @@ public class Word {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getDescription() {
@@ -81,7 +71,7 @@ public class Word {
 
 	@Override
 	public String toString() {
-		return "Word [word_id=" + word_id + ", name=" + name + ", title=" + title + ", description=" + description + ", writer_id=" + writer_id + ", viewcount=" + viewcount + ", likes=" + likes + ", written_date=" + written_date + "]";
+		return "Word [word_id=" + word_id + ", name=" + name + ", description=" + description + ", writer_id=" + writer_id + ", viewcount=" + viewcount + ", likes=" + likes + ", written_date=" + written_date + "]";
 	}
 
 }

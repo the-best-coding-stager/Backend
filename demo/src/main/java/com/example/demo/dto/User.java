@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class User implements UserDetails{
-	private String userId;
+	private String user_id;
 	private String nickname;
 	private String password1;
 	private String password2;
@@ -21,11 +21,11 @@ public class User implements UserDetails{
 	}
 	
 	public String getUserId() {
-		return userId;
+		return user_id;
 	}
 	
 	public void setUserId(String id) {
-		this.userId = id;
+		this.user_id = id;
 	}
 	
 	public String getNickname() {
@@ -54,7 +54,7 @@ public class User implements UserDetails{
 	
 	@Override
 	public String toString() {
-		return "User [id= " + userId + ", nickname= " + nickname + ", password= " + password1 + "]";
+		return "User [id= " + user_id + ", nickname= " + nickname + ", password= " + password1 + "]";
 	}
 
 	@Override

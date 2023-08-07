@@ -7,7 +7,7 @@ import com.example.demo.dto.User;
 public interface UserService {
 	//List<User> signUpInfo();
 	
-	void signUp(User user);	// 회원가입 요청
+	void signUpInfo(User user);	// 회원가입 요청
 	
 	User loadUserByUsername(String userId);
 }

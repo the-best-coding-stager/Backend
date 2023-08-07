@@ -16,22 +16,24 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserDAO dao;
-	
-//	@Override
-//	public List<User> signUpInfo() {
-//		User user = new User();
-//		
-//		return dao.testUser();
-//	}
+
+	/*
+	@Override
+	public List<User> signUpInfo() {
+		User user = new User();
+		
+		return dao.testUser();
+	}
+	*/
 
 	//회원가입 요청 DAO에 연결
 	@Override
-	public void signUp(User user) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		user.setPassword1(passwordEncoder.encode(user.getPassword1()));
-		user.setUserId(user.getNickname());
-		user.setNickname(user.getNickname());
-		dao.signUp(user);
+	public void signUpInfo(User user) {
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		user.setPassword1(passwordEncoder.encode(user.getPassword1()));
+//		user.setUserId(user.getNickname());
+//		user.setNickname(user.getNickname());
+		dao.signUpInfo(user);
 		
 	}
 	
@@ -43,5 +45,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return user;
 	}
+
+
 	
 }

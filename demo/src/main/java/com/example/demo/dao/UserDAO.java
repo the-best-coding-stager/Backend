@@ -10,7 +10,7 @@ import com.example.demo.dto.User;
 public interface UserDAO {
 	List<User> testUser();
 	
-	void signUp(User user);	// 회원가입 유저 정보 DB에 
+	void signUpInfo(User user);	// 회원가입 유저 정보 DB에 
 	
 	User signIn(String userId);	// 로그인
 }

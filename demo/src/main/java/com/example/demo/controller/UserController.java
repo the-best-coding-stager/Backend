@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.dto.User;
 import com.example.demo.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 
 @RestController
+@RequestMapping(value="/api")
+@RequiredArgsConstructor
 public class UserController {
 	
 	@Autowired
@@ -41,6 +45,7 @@ public class UserController {
 //		}
 		
 		service.signUpInfo(user);
+		System.out.println("Success");
 		return user;
 		//return "Success signup";	// 로그인한 메인화면 리턴
 	}

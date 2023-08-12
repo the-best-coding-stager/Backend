@@ -12,8 +12,9 @@ public class User implements UserDetails{
 	private String nickname;
 	private String password1;
 	private String password2;
+	private String role;
 	
-	private String userAuth;
+	//private String userAuth;
 
 	
 	public User() {
@@ -60,7 +61,8 @@ public class User implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return Collections.singletonList(new SimpleGrantedAuthority(this.userAuth));
+		//return Collections.singletonList(new SimpleGrantedAuthority(this.role));
+		return Collections.emptyList();
 	}
 
 	@Override

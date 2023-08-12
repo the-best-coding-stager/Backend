@@ -10,6 +10,6 @@
 			INSERT INTO
 			users (user_id, nickname, password1, password2)
 			VALUES
-			(#{user_id}, #{nickname}, #{password1}, #{password2})
+			(#{user_id}, #{nickname}, #{password1}, #{password2});
 		</insert>
 	</mapper>

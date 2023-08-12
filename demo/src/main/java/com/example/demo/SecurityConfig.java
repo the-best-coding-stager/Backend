@@ -9,7 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserService service;
 	
@@ -17,15 +20,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/login", "/signUp").permitAll()
+				.antMatchers("/api/login", "/api/signUp").anonymous()
 				// user 접근 허용
-				.antMatchers("/userAccess").hasRole("USER")
+				//.antMatchers("/userAccess").hasRole("USER")
 				.and()
 			.formLogin()
-				.loginPage("/login")
-				.loginProcessingUrl("/login_proc")
-				.defaultSuccessUrl("/user_access")
-				.failureUrl("/access_denied")
+//				.loginPage("/login")
+//				.loginProcessingUrl("/login_proc")
+//				.defaultSuccessUrl("/user_access")
+//				.failureUrl("/access_denied")
 				.and()
 			.csrf().disable();
 	}

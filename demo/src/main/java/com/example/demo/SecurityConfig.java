@@ -7,14 +7,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.example.demo.dto.User;
 import com.example.demo.service.UserService;
+import com.example.demo.service.impl.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	private UserService service;
+	private UserServiceImpl service;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -25,10 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//.antMatchers("/userAccess").hasRole("USER")
 				.and()
 			.formLogin()
-//				.loginPage("/login")
+				.loginPage("/api/login")
 //				.loginProcessingUrl("/login_proc")
-//				.defaultSuccessUrl("/user_access")
-//				.failureUrl("/access_denied")
+				.defaultSuccessUrl("/api/user_access")
+				.failureUrl("/api/access_denied")
 				.and()
 			.csrf().disable();
 	}
@@ -36,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//auth.userDetailsService(service).passwordEncoder(new BCryptPasswordEncoder());
+		System.out.println("What happen with you");
 	}
 
 }

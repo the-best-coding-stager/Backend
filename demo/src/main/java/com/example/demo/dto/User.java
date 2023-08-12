@@ -7,13 +7,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
+@Data
 public class User implements UserDetails{
-	private String user_id;
+	private String userId;
 	private String nickname;
 	private String password1;
 	private String password2;
 	private String role;
 	
+	private String name;
 	//private String userAuth;
 
 	
@@ -22,11 +26,11 @@ public class User implements UserDetails{
 	}
 	
 	public String getUserId() {
-		return user_id;
+		return userId;
 	}
 	
 	public void setUserId(String id) {
-		this.user_id = id;
+		this.userId = id;
 	}
 	
 	public String getNickname() {
@@ -53,16 +57,20 @@ public class User implements UserDetails{
 		this.password2 = password;
 	}
 	
+	public void setUserRole(String role) {
+		this.role = role;
+	}
+	
 	@Override
 	public String toString() {
-		return "User [id= " + user_id + ", nickname= " + nickname + ", password= " + password1 + "]";
+		return "User [id= " + userId + ", nickname= " + nickname + ", password= " + password1 + "]";
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		//return Collections.singletonList(new SimpleGrantedAuthority(this.role));
-		return Collections.emptyList();
+		return Collections.singletonList(new SimpleGrantedAuthority(this.role));
 	}
 
 	@Override
@@ -74,7 +82,7 @@ public class User implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.userId;
 	}
 
 	@Override

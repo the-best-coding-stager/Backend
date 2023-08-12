@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="com.example.demo.dao.UserDAO">
-		<select id="testUser"
+		<select id="getUserAccount"
 			resultType="com.example.demo.dto.User">
 			SELECT * FROM users
+			WHERE user_id = #{userId}
 		</select>
 
 		<insert id="signUpInfo" parameterType="com.example.demo.dto.User" >
 			INSERT INTO
-			users (user_id, nickname, password1, password2)
+			users (user_id, nickname, password1, password2, role)
 			VALUES
-			(#{user_id}, #{nickname}, #{password1}, #{password2});
+			(#{userId}, #{nickname}, #{password1}, #{password2}, #{role});
 		</insert>
 	</mapper>

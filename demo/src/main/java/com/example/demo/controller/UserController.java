@@ -40,8 +40,9 @@ public class UserController {
 //		}
 //		
 //		if(!user.getPassword1().equals(user.getPassword2())) {
-//			bindingResult.rejectValue("password2", "passwordIncorrect", "2개의 파스워드가 일치하지 않습니다.");
-//			return "Passwords are different";
+//			//bindingResult.rejectValue("password2", "passwordIncorrect", "2개의 파스워드가 일치하지 않습니다.");
+//			System.out.println("Passwords are different");
+//			return user;
 //		}
 		
 		service.signUpInfo(user);
@@ -63,8 +64,8 @@ public class UserController {
 	 * */
 	@PostMapping(path = "/login")
 	public User logIn(@RequestBody User user) {
-		
-		
+		//service.loadUserByUsername(user.getUserId());
+		System.out.println(user.getUserId());
 		return user;	//로그인 화면 리턴
 	}
 	

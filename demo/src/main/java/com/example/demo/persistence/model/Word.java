@@ -14,50 +14,5 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("Word")
 @Entity
 public class Word implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	@Column(nullable = false)
-    private String name;
-	
-	@Version
-    private long version;
-	
-	public Word() {
-        super();
-    }
-	
-	public Word(final String name) {
-        super();
 
-        this.name = name;
-    }
-	
-	// API
-	public long getId() {
-        return id;
-    }
-
-    public void setId(final long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
-    }
-    
-    //
 }

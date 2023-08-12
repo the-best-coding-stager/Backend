@@ -1,7 +1,6 @@
 package com.example.demo.spring;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.xstream.XStreamMarshaller;
@@ -13,8 +12,7 @@ import org.springframework.oxm.xstream.XStreamMarshaller;
  * Therefore, be sure to remove manually added XML message converter first then uncomment
  * this @{@link org.springframework.context.annotation.Configuration} to use
  */
-
-@Configuration
+//@Configuration
 public class ConverterExtensionsConfig {
 
     @Bean

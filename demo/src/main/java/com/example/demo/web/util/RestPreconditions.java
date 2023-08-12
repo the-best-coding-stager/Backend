@@ -4,12 +4,16 @@ import org.springframework.http.HttpStatus;
 
 import com.example.demo.web.exception.MyResourceNotFoundException;
 
+/**
+ * Simple static methods to be called at the start of your own methods to verify correct arguments and state. If the Precondition fails, an {@link HttpStatus} code is thrown
+ */
 public final class RestPreconditions {
-	private RestPreconditions() {
+
+    private RestPreconditions() {
         throw new AssertionError();
     }
-	
-	// API
+
+    // API
 
     /**
      * Check if some value was found, otherwise throw exception.
@@ -24,7 +28,7 @@ public final class RestPreconditions {
             throw new MyResourceNotFoundException();
         }
     }
-    
+
     /**
      * Check if some value was found, otherwise throw exception.
      * 
@@ -40,4 +44,5 @@ public final class RestPreconditions {
 
         return resource;
     }
+
 }

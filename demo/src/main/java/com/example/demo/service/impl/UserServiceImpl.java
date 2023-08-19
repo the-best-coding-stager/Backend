@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			throw new UsernameNotFoundException("User not authorized.");
 		}
 		return user;
+	}
+
+	@Override
+	public void editMypage(User user) {
+		User targetUser = dao.findByUserid(user.getUserId());
+		
+		dao.update(user);
 	}
 
 

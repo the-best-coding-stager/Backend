@@ -15,4 +15,6 @@ public interface UserService {
 	void signUpInfo(User user);	// 회원가입 요청
 	
 	UserDetails loadUserByUsername(String userId);
+	
+	void editMypage(User user);	// 마이페이지 수정
 }

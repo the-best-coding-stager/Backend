@@ -15,4 +15,8 @@ public interface UserDAO {
 	void signUpInfo(User user);	// 회원가입 유저 정보 DB에 
 	
 	User getUserAccount(String userId);	// 로그인
+	
+	User findByUserid(String userId);	// 유저 아이디로 찾기
+	
+	void update(User user);	// 마이페이지 수정, DB 업데이트
 }

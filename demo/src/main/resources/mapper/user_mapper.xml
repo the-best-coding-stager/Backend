@@ -13,4 +13,17 @@
 			VALUES
 			(#{userId}, #{nickname}, #{password1}, #{password2}, #{role});
 		</insert>
+		
+		<update id="update" parameterType="com.example.demo.dto.User">
+			UPDATE
+			users (user_id, nickname, password1, password2, role)
+			SET user_id=#{userId}, nickname=#{nickname}, password1=#{password1}, password2=#{password2}, role=#{role}
+			WHERE user_id = #{userId}
+		</update>
+		
+		<select id="findByUserid"
+			resultType="com.example.demo.dto.User">
+			SELECT * FROM users
+			WHERE user_id = #{userId}
+		</select>
 	</mapper>

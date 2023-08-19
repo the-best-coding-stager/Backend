@@ -65,7 +65,7 @@ public class UserController {
 	 * */
 	@PostMapping(path = "/login")
 	public User logIn(@RequestBody User user) {
-		//service.loadUserByUsername(user.getUserId());
+		service.loadUserByUsername(user.getUserId());
 		System.out.println(user.getUserId());
 		return user;	//로그인 화면 리턴
 	}
@@ -85,12 +85,34 @@ public class UserController {
 		return user;
 	}
 	
+	/* 마이페이지 수정 페이지 요청
+	 * GetMapping
+	 * */
+	@GetMapping(path = "/mypage/edit")
+	public void MypageEditForm(@AuthenticationPrincipal User user) {
+		System.out.println("This is mypageedit page");
+	}
+	
+	/* 마이페이지 수정 요청
+	 * PatchMapping
+	 * */
+	@PutMapping(path = "/mypage/edit")
+	public User EditMypage(@RequestBody User user) {
+		service.editMypage(user);
+		return user;
+	}
+	
+	
 	/* 로그아웃 요청
 	 * PostMapping
 	 * */
 	@PostMapping(path = "/logout")
 	public String Logout() {
+		System.out.println("print: success logout");
 		return "success logout";
 	}
 	
+	/* 회원탈퇴 요청
+	 * DeleteMapping
+	 * */
 }

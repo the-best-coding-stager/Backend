@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,11 +40,11 @@ public class UserController {
 //			return "Fail signup";
 //		}
 //		
-//		if(!user.getPassword1().equals(user.getPassword2())) {
-//			//bindingResult.rejectValue("password2", "passwordIncorrect", "2개의 파스워드가 일치하지 않습니다.");
-//			System.out.println("Passwords are different");
-//			return user;
-//		}
+		if(!user.getPassword1().equals(user.getPassword2())) {
+			//bindingResult.rejectValue("password2", "passwordIncorrect", "2개의 파스워드가 일치하지 않습니다.");
+			System.out.println("Passwords are different");
+			return user;
+		}
 		
 		service.signUpInfo(user);
 		System.out.println("Success");
@@ -74,4 +75,22 @@ public class UserController {
 	/* 마이페이지 요청
 	 * GetMapping
 	 * */
+	@GetMapping(path = "/mypage")
+	public User MyPage(@AuthenticationPrincipal(expression ="#this =='anonymousUser'?null:user") User user) {
+		if(user==null) System.out.println("User is null");
+		else {
+		//System.out.println(user.getNickname());
+		System.out.println("Accsess Mypage");
+		}
+		return user;
+	}
+	
+	/* 로그아웃 요청
+	 * PostMapping
+	 * */
+	@PostMapping(path = "/logout")
+	public String Logout() {
+		return "success logout";
+	}
+	
 }

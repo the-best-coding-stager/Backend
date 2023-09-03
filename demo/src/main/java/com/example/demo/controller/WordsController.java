@@ -64,6 +64,7 @@ public class WordsController {
 		return wordService.getWordsByWriterId(writer_id);
 	}
 	
+	/*
 	@PostMapping(path="/add")
 	public Word submitAddNewWord(@RequestBody Word word) {
 		wordService.addWord(word);
@@ -75,6 +76,7 @@ public class WordsController {
 		Integer word_id = word.getWord_id();
 		wordService.updateWord(word_id, word);
 	}
+	*/
 	
 	@DeleteMapping(path="/word_id={word_id}")
 	@ResponseStatus(HttpStatus.OK)

@@ -21,18 +21,18 @@ public class WordDto {
 	
 	private Integer likes;
 	
-	private String date;
+	private String written_date;
 	
 	private UserDto user;
 	
-	public Date getWrittenDateConverted(String timezone) throws ParseException {
+	public Date getSubmissionDateConverted(String timezone) throws ParseException {
         dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
-        return dateFormat.parse(this.date);
+        return dateFormat.parse(this.written_date);
     }
 
-    public void setWrittenDate(Date date, String timezone) {
+    public void setSubmissionDate(Date date, String timezone) {
         dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
-        this.date = dateFormat.format(date);
+        this.written_date = dateFormat.format(written_date);
     }
 
 	public Long getWord_id() {
@@ -83,12 +83,12 @@ public class WordDto {
 		this.likes = likes;
 	}
 
-	public String getDate() {
-		return date;
+	public String getWritten_date() {
+		return written_date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setWritten_date(String written_date) {
+		this.written_date = written_date;
 	}
 
 	public UserDto getUser() {

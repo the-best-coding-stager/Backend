@@ -42,11 +42,9 @@ public class WordRestController {
     @ResponseBody
     public List<WordDto> getWords(
             @PathVariable("page") int page,
-            @PathVariable("size") int size, 
-            @PathVariable("sortDir") String sortDir, 
-            @PathVariable("sort") String sort) {
+            @PathVariable("size") int size) {
         
-        List<Word> words = wordService.getWordsList(page, size, sortDir, sort);
+        List<Word> words = wordService.getWordsList(page, size);
         return words.stream()
           .map(this::convertToDto)
           .collect(Collectors.toList());
@@ -55,9 +53,11 @@ public class WordRestController {
     // 인기 단어
     @GetMapping
     @ResponseBody
-    public List<WordDto> getPopularWords() {
+    public List<WordDto> getPopularWords(
+            @PathVariable("page") int page,
+            @PathVariable("size") int size) {
         
-        List<Word> words = wordService.getPopularWordsList();
+        List<Word> words = wordService.getPopularWordsList(page, size);
         return words.stream()
           .map(this::convertToDto)
           .collect(Collectors.toList());
@@ -66,9 +66,11 @@ public class WordRestController {
     // 최신 단어
     @GetMapping
     @ResponseBody
-    public List<WordDto> getNewestWords() {
+    public List<WordDto> getNewestWords(
+            @PathVariable("page") int page,
+            @PathVariable("size") int size) {
         
-        List<Word> words = wordService.getNewestWordsList();
+        List<Word> words = wordService.getNewestWordsList(page, size);
         return words.stream()
           .map(this::convertToDto)
           .collect(Collectors.toList());

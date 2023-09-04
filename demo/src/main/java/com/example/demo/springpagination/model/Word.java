@@ -2,30 +2,47 @@ package com.example.demo.springpagination.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("words")
 @Entity
 public class Word {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long word_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "word_id")
+    private long word_id;
 	
-	private String name;
+	@Column(nullable = false, name = "name")
+    private String name;
 	
-	private String description;
+	@Column(name = "description")
+    private String description;
 	
-	private String writer_id;
+	@Column(name = "writer_id")
+    private String writer_id;
 	
+	@Column(name = "viewcount")
+    @ColumnDefault("0")
 	private Long viewcount;
 	
+	@Column(name = "likes")
+    @ColumnDefault("0")
 	private Long likes;
 	
 	private String date;
 
+	@Column(name = "written_date")
+	@CreatedDate
 	private Date written_date;
 	
 	private boolean sent;

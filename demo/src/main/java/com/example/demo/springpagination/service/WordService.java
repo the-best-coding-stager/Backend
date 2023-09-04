@@ -2,7 +2,6 @@ package com.example.demo.springpagination.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.springpagination.model.Word;
 import com.example.demo.springpagination.repository.WordRepository;
-
 
 @Service
 public class WordService implements IWordService{
@@ -24,36 +22,42 @@ public class WordService implements IWordService{
     private IUserService userService;
 
     @Override
-    public List<Word> getWordsList(int page, int size, String sortDir, String sort) {
+    public List<Word> getWordsList(int page, int size) {
 
         PageRequest pageReq
-        = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
+        = PageRequest.of(page, size);
 
         Page<Word> words = wordRepository.findAll(pageReq);
         return words.getContent();
     }
 
     @Override
-    public List<Word> getUserWordsList(int page, int size, String sortDir, String sort) {
+    public List<Word> getUserWordsList(int page, int size) {
 
         PageRequest pageReq
-        = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
+        = PageRequest.of(page, size);
 
         Page<Word> words = wordRepository.findByUser(userService.getCurrentUser(), pageReq);
         return words.getContent();
     }
     
     @Override
-	public List<Word> getPopularWordsList() {
+	public List<Word> getPopularWordsList(int page, int size) {
 
-    	Page<Word> words = wordRepository.findPopular();
+        PageRequest pageReq
+        = PageRequest.of(page, size);
+
+    	Page<Word> words = wordRepository.findPopular(pageReq);
         return words.getContent();
 	}
 
 	@Override
-	public List<Word> getNewestWordsList() {
+	public List<Word> getNewestWordsList(int page, int size) {
+
+        PageRequest pageReq
+        = PageRequest.of(page, size);
 		
-        Page<Word> words = wordRepository.findNewest();
+        Page<Word> words = wordRepository.findNewest(pageReq);
         return words.getContent();
 	}
 

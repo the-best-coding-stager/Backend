@@ -11,21 +11,32 @@ import com.example.demo.springpagination.model.Word;
 import com.example.demo.springpagination.model.User;
 
 public interface WordRepository extends JpaRepository<Word, Long> {
-
-    @Query("SELECT u FROM words u WHERE u.writer_id=:writer_id")
-    Page<Word> findByUser(@Param("writer_id") String writer_id, Pageable pageReq);
-
-    default Page<Word> findByUser(User user, Pageable pageReq) {
-        return findByUser(user.getName(), pageReq);
+    
+    @Query(value = "SELECT * FROM words", nativeQuery = true)
+    Page<Word> findAllWords(Pageable pageReq);
+    
+    default Page<Word> findAll(Pageable pageReq) {
+    	return findAllWords(pageReq);
     }
     
-    @Query("SELECT * FROM words")
-    Page<Word> findAll(Pageable pageReq);
+    @Query(value = "SELECT * FROM words ORDER BY viewcount DESC LIMIT 5", nativeQuery = true)
+    Page<Word> findPopularWords(Pageable pageReq);
+    default Page<Word> findPopular(Pageable pageReq) {
+    	return findPopularWords(pageReq);
+    }
     
-    @Query("SELECT * FROM words ORDER BY viewcount DESC LIMIT 5")
-    Page<Word> findPopular();
+    @Query(value = "SELECT * FROM words ORDER BY written_date DESC LIMIT 5", nativeQuery = true)
+    Page<Word> findNewestWords(Pageable pageReq);
+    default Page<Word> findNewest(Pageable pageReq) {
+    	return findNewestWords(pageReq);
+    }
+
+    @Query(value = "SELECT * FROM words WHERE writer_id=:writer_id", nativeQuery = true)
+    Page<Word> findByUserWords(@Param("writer_id") String writer_id, Pageable pageReq);
+
+    default Page<Word> findByUser(User user, Pageable pageReq) {
+        return findByUserWords(user.getName(), pageReq);
+    }
     
-    @Query("SELECT * FROM words ORDER BY written_date DESC LIMIT 5")
-    Page<Word> findNewest();
     
 }

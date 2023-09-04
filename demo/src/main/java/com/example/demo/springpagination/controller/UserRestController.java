@@ -27,9 +27,6 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/mypage")
 public class UserRestController {
-	
-	@Autowired
-    private IWordService wordService;
  
     @Autowired
     private IUserService userService;
@@ -37,6 +34,9 @@ public class UserRestController {
     @Autowired
     private ModelMapper modelMapper;
 
+    /*@Autowired
+    private IWordService wordService;
+    
     @GetMapping("/word")
     @ResponseBody
     public List<WordDto> getUserWords(
@@ -72,4 +72,5 @@ public class UserRestController {
         }
         return word;
     }
+    */
 }

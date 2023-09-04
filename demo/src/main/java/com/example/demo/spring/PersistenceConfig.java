@@ -24,8 +24,8 @@ import com.google.common.base.Preconditions;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence-${envTarget:h2}.properties" })
-@ComponentScan(basePackages = { "com.baeldung.persistence", "com.baeldung.springpagination" })
-@EnableJpaRepositories(basePackages = {"com.baeldung.persistence.dao", "com.baeldung.springpagination.repository"})
+@ComponentScan(basePackages = { "com.example.demo.persistence", "com.example.demo.springpagination" })
+@EnableJpaRepositories(basePackages = {"com.example.demo.persistence.dao", "com.example.demo.springpagination.repository"})
 public class PersistenceConfig {
 
     @Autowired
@@ -39,7 +39,7 @@ public class PersistenceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.baeldung.persistence.model", "com.baeldung.springpagination.model" });
+        em.setPackagesToScan(new String[] { "com.example.demo.persistence.model", "com.example.demo.springpagination.model" });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         // vendorAdapter.set

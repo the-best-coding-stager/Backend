@@ -7,13 +7,13 @@ import com.example.demo.springpagination.model.Word;
 
 public interface IWordService {
 
-    List<Word> getWordsList(int page, int size, String sortDir, String sort);
+    List<Word> getWordsList(int page, int size);
    
-    List<Word> getUserWordsList(int page, int size, String sortDir, String sort);
+    List<Word> getUserWordsList(int page, int size);
     
-    List<Word> getPopularWordsList();
+    List<Word> getPopularWordsList(int page, int size);
     
-	List<Word> getNewestWordsList();
+	List<Word> getNewestWordsList(int page, int size);
 	
 	List<Word> getWordsByName(String name);
 	

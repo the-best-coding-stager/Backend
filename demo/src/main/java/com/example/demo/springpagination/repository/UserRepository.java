@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import com.example.demo.springpagination.model.User;
 import com.example.demo.springpagination.model.Word;
 
-public interface UserRepository extends JpaRepository<Word, Long> {
+public interface UserRepository {
 
 	void signUp(User user);	// 회원가입 유저 정보 DB에 
 	

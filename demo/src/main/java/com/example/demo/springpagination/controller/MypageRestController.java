@@ -28,11 +28,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/mypage")
 public class MypageRestController {
  
-    @Autowired
-    private IUserService userService;
+    // @Autowired
+    //private IUserService userService;
  
-    @Autowired
-    private ModelMapper modelMapper;
+    // @Autowired
+    // private ModelMapper modelMapper;
 
     /*@Autowired
     private IWordService wordService;

@@ -5,5 +5,9 @@ import com.example.demo.springpagination.model.User;
 public interface IUserService {
 
     User getCurrentUser();
+    
+    void signUp(User user);	// 회원가입 요청
+	
+	User loadUserByUsername(String userId);
 
 }

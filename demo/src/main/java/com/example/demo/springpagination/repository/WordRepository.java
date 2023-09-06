@@ -37,6 +37,12 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     default Page<Word> findByUser(User user, Pageable pageReq) {
         return findByUserWords(user.getName(), pageReq);
     }
-    
+
+    @Query(value = "SELECT * FROM words WHERE name LIKE CONCAT('%', :name, '%')", nativeQuery = true)
+    Page<Word> findByNameWords(@Param("name") String name, Pageable pageReq);
+
+    default Page<Word> findByName(String name, Pageable pageReq) {
+        return findByNameWords(name, pageReq);
+    }
     
 }

@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS springmvcdb;
+
+USE springmvcdb;
+
 CREATE TABLE users (
 	user_id VARCHAR(255) NOT NULL,
 	nickname VARCHAR(255) NULL DEFAULT NULL,
@@ -24,4 +28,5 @@ CREATE TABLE likes (
 );
  
 ALTER DATABASE springmvcdb DEFAULT CHARACTER SET utf8 ;
+
 

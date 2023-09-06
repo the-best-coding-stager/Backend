@@ -148,10 +148,21 @@
             <artifactId>xstream</artifactId>
             <version>${xstream.version}</version>
         </dependency>
+        <!-- JPA 하이버네이트 -->
+    	<dependency>
+        	<groupId>org.hibernate</groupId>
+        	<artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <!-- H2 데이터베이스 -->
         <dependency> 
     		<groupId>com.h2database</groupId> 
     		<artifactId>h2</artifactId>
     		<scope>runtime</scope>
+		</dependency>
+		<!-- MySql 데이터베이스 -->
+        <dependency> 
+    		<groupId>mysql</groupId> 
+    		<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

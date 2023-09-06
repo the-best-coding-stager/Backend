@@ -13,7 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String name;
+    private String userId;
+    
+	private String nickname;
+	
+	private String password;
+    
+	private String name;
     
     @OneToOne
     Preference preference;
@@ -34,7 +40,31 @@ public class User {
         this.id = id;
     }
 
-    public Preference getPreference() {
+    public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Preference getPreference() {
         return preference;
     }
 

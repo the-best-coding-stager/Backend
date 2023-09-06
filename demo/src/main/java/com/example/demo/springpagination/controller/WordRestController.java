@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -41,21 +42,33 @@ public class WordRestController {
     @GetMapping
     @ResponseBody
     public List<WordDto> getWords(
-            @PathVariable("page") int page,
-            @PathVariable("size") int size) {
-        
+            @PathVariable("page") @RequestParam(defaultValue="0") int page,
+            @PathVariable("size") @RequestParam(defaultValue="10") int size) {
         List<Word> words = wordService.getWordsList(page, size);
+        return words.stream()
+          .map(this::convertToDto)
+          .collect(Collectors.toList());        
+    }
+    
+    // 최신 단어
+    @GetMapping(value="/test")
+    @ResponseBody
+    public List<WordDto> getTestWords(
+            @RequestParam(value="page", defaultValue="0", required = false) int page,
+            @RequestParam(value="size", defaultValue="10", required = false) int size) {
+        
+        List<Word> words = wordService.getNewestWordsList(page, size);
         return words.stream()
           .map(this::convertToDto)
           .collect(Collectors.toList());
     }
     
     // 인기 단어
-    @GetMapping
+    @GetMapping(path="/popular")
     @ResponseBody
     public List<WordDto> getPopularWords(
-            @PathVariable("page") int page,
-            @PathVariable("size") int size) {
+            @RequestParam(value="page", defaultValue="0") int page,
+            @RequestParam(value="size", defaultValue="10") int size) {
         
         List<Word> words = wordService.getPopularWordsList(page, size);
         return words.stream()
@@ -64,11 +77,11 @@ public class WordRestController {
     }
     
     // 최신 단어
-    @GetMapping
+    @GetMapping(path="/newest")
     @ResponseBody
     public List<WordDto> getNewestWords(
-            @PathVariable("page") int page,
-            @PathVariable("size") int size) {
+            @PathVariable("page") @RequestParam(defaultValue="0") int page,
+            @PathVariable("size") @RequestParam(defaultValue="10") int size) {
         
         List<Word> words = wordService.getNewestWordsList(page, size);
         return words.stream()
@@ -104,14 +117,14 @@ public class WordRestController {
     }
  
     // 단어 상세 정보
-    @GetMapping(value = "/word_id={word_id}")
+    @GetMapping(path="/word_id/{word_id}")
     @ResponseBody
     public WordDto getWord(@PathVariable("word_id") Long word_id) {
         return convertToDto(wordService.getWordById(word_id));
     }
  
     // 단어 수정 (권한 있는 경우)
-    @PatchMapping(value = "/word_id={word_id}")
+    @PatchMapping(value = "/word_id/{word_id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateword(@PathVariable("word_id") Long word_id, @RequestBody WordDto wordDto) throws ParseException {
         if(!Objects.equals(word_id, wordDto.getWord_id())){
@@ -122,13 +135,13 @@ public class WordRestController {
         wordService.updateWord(word);
     }
 	
-	@DeleteMapping(path="/word_id={word_id}")
+	@DeleteMapping(path="/word_id/{word_id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void getDeleteWordForm(@PathVariable("word_id") Long word_id) {
 		wordService.deleteWord(word_id);
 	}
 	
-	@GetMapping(path="/name={name}")
+	@GetMapping(path="/name/{name}")
 	public List<Word> getWordsByName(@PathVariable String name) {
 		return wordService.getWordsByName(name);
 	}

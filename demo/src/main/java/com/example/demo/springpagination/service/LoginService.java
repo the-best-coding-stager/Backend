@@ -9,15 +9,17 @@ import com.example.demo.springpagination.repository.UserRepository;
 
 public class LoginService implements ILoginService {
 	
-	@Autowired
-	private UserRepository userRepoistory;
+	// @Autowired
+	// private UserRepository userRepoistory;
+	
+	/*
 
 	//회원가입 요청 DAO에 연결
   	@Override
   	public void signUp(User user) {
   		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
   		user.setPassword(passwordEncoder.encode(user.getPassword()));
-  		user.setUserId(user.getNickname());
+  		user.setUser_id(user.getNickname());
   		user.setNickname(user.getNickname());
   		userRepoistory.signUp(user);		
   	}
@@ -30,5 +32,7 @@ public class LoginService implements ILoginService {
   		}
   		return user;
   	}
+  	
+  	*/
 
 }

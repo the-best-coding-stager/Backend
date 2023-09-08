@@ -4,7 +4,7 @@ import com.example.demo.springpagination.model.User;
 
 public interface ILoginService {
 
-    void signUp(User user);	// 회원가입 요청
+    // void signUp(User user);	// 회원가입 요청
 	
-	User loadUserByUsername(String userId);
+	// User loadUserByUsername(String userId);
 }

@@ -16,7 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findByUser(@Param("userName") String userName, Pageable pageReq);
 
     default Page<Post> findByUser(User user, Pageable pageReq) {
-        return findByUser(user.getName(), pageReq);
+        return findByUser(user.getUser_id(), pageReq);
     }
 
 }

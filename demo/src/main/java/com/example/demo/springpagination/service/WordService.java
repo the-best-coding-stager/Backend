@@ -85,11 +85,6 @@ public class WordService implements IWordService{
     public void updateWord(Word word) {
     	wordRepository.save(word);
     }
-    
-	@Override
-	public void addWord(Word word) {
-		
-	}
 
 	@Override
 	public void deleteWord(Long word_id) {

@@ -12,30 +12,25 @@ import com.example.demo.springpagination.model.User;
 
 public interface WordRepository extends JpaRepository<Word, Long> {
     
-    @Query(value = "SELECT * FROM words", nativeQuery = true)
-    Page<Word> findAllWords(Pageable pageReq);
+    Page<Word> findAll(Pageable pageReq);
     
-    default Page<Word> findAll(Pageable pageReq) {
-    	return findAllWords(pageReq);
-    }
+    Page<Word> findTop10ByOrderByLikesDesc(Pageable pageReq);
     
-    @Query(value = "SELECT * FROM words ORDER BY viewcount DESC LIMIT 5", nativeQuery = true)
-    Page<Word> findPopularWords(Pageable pageReq);
+    Page<Word> findTop10ByOrderByDateDesc(Pageable pageReq);
+    
     default Page<Word> findPopular(Pageable pageReq) {
-    	return findPopularWords(pageReq);
+    	return findTop10ByOrderByLikesDesc(pageReq);
     }
     
-    @Query(value = "SELECT * FROM words ORDER BY written_date DESC LIMIT 5", nativeQuery = true)
-    Page<Word> findNewestWords(Pageable pageReq);
     default Page<Word> findNewest(Pageable pageReq) {
-    	return findNewestWords(pageReq);
+    	return findTop10ByOrderByDateDesc(pageReq);
     }
 
     @Query(value = "SELECT * FROM words WHERE writer_id=:writer_id", nativeQuery = true)
     Page<Word> findByUserWords(@Param("writer_id") String writer_id, Pageable pageReq);
 
     default Page<Word> findByUser(User user, Pageable pageReq) {
-        return findByUserWords(user.getName(), pageReq);
+        return findByUserWords(user.getUser_id(), pageReq);
     }
 
     @Query(value = "SELECT * FROM words WHERE name LIKE CONCAT('%', :name, '%')", nativeQuery = true)

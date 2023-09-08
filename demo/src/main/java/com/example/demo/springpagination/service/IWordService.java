@@ -25,8 +25,6 @@ public interface IWordService {
 
     void updateWord(Word word);
     
-    void addWord(Word word);
-    
     void deleteWord(Long word_id);
 
 }

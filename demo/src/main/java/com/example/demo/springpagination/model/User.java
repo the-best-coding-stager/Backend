@@ -1,5 +1,6 @@
 package com.example.demo.springpagination.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,26 +12,17 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Column(name = "id")
+    private long id;
     
-    private String userId;
+    @Column(nullable = false, name = "user_id")
+    private String user_id;
     
+    @Column(name = "nickname")
 	private String nickname;
 	
+    @Column(name = "password")
 	private String password;
-    
-	private String name;
-    
-    @OneToOne
-    Preference preference;
-    
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
@@ -40,12 +32,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserId() {
-		return userId;
+    public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getNickname() {
@@ -63,12 +55,4 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Preference getPreference() {
-        return preference;
-    }
-
-    public void setPreference(Preference preference) {
-        this.preference = preference;
-    }
 }

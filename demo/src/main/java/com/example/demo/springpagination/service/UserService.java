@@ -1,25 +1,46 @@
 package com.example.demo.springpagination.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.springpagination.model.Preference;
 import com.example.demo.springpagination.model.User;
+import com.example.demo.springpagination.repository.UserRepository;
 
 @Service
 public class UserService implements IUserService {
+	
+	@Autowired
+	private UserRepository userRepository;
 
     @Override
     public User getCurrentUser() {
-        
-        Preference preference = new Preference();
-        preference.setId(1L);
-        preference.setTimezone("Asia/Calcutta");
-        
+    	
         User user = new User();
         user.setId(1L);
-        user.setName("Micheal");
-        user.setPreference(preference);
+        user.setUser_id("Micheal");
                 
         return user;
     }
+
+	@Override
+	public User createUser(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User getUserById(Long id) {
+		return userRepository.getOne(id); 
+	}
+
+	@Override
+	public void updateUser(User user) {
+		userRepository.save(user);
+		
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		userRepository.deleteById(id);
+		
+	}
 }

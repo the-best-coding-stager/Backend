@@ -25,12 +25,12 @@ public class WordDto {
 	
 	private UserDto user;
 	
-	public Date getWrittenDateConverted(String timezone) throws ParseException {
+	public Date getDateConverted(String timezone) throws ParseException {
         dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
         return dateFormat.parse(this.date);
     }
 
-    public void setWrittenDate(Date date, String timezone) {
+    public void setDate(Date date, String timezone) {
         dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
         this.date = dateFormat.format(date);
     }

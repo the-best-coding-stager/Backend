@@ -50,14 +50,14 @@ public class WordRestController {
           .collect(Collectors.toList());        
     }
     
-    // 최신 단어
+    // 테스트
     @GetMapping(value="/test")
     @ResponseBody
     public List<WordDto> getTestWords(
             @RequestParam(value="page", defaultValue="0", required = false) int page,
             @RequestParam(value="size", defaultValue="10", required = false) int size) {
         
-        List<Word> words = wordService.getNewestWordsList(page, size);
+        List<Word> words = wordService.getPopularWordsList(page, size);
         return words.stream()
           .map(this::convertToDto)
           .collect(Collectors.toList());
@@ -106,7 +106,7 @@ public class WordRestController {
     */
  
     // 단어 추가
-    @PostMapping
+    @PostMapping(path="/add")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public WordDto createword(@RequestBody WordDto wordDto) throws ParseException {
@@ -124,7 +124,7 @@ public class WordRestController {
     }
  
     // 단어 수정 (권한 있는 경우)
-    @PatchMapping(value = "/word_id/{word_id}")
+    @PatchMapping(path="/word_id/{word_id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateword(@PathVariable("word_id") Long word_id, @RequestBody WordDto wordDto) throws ParseException {
         if(!Objects.equals(word_id, wordDto.getWord_id())){
@@ -149,21 +149,16 @@ public class WordRestController {
     // DTO 변환
     private WordDto convertToDto(Word word) {
     	WordDto wordDto = modelMapper.map(word, WordDto.class);
-        wordDto.setWrittenDate(word.getWrittenDate(), 
-            userService.getCurrentUser().getPreference().getTimezone());
         return wordDto;
     }
     
     // Entity 변환
     private Word convertToEntity(WordDto wordDto) throws ParseException {
     	Word word = modelMapper.map(wordDto, Word.class);
-        word.setWrittenDate(wordDto.getWrittenDateConverted(
-          userService.getCurrentUser().getPreference().getTimezone()));
       
         if (wordDto.getWord_id() != null) {
         	Word oldWord = wordService.getWordById(wordDto.getWord_id());
             word.setWriter_id(oldWord.getWriter_id());
-            word.setSent(oldWord.isSent());
         }
         return word;
     }

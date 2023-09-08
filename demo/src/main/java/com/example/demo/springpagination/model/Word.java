@@ -14,9 +14,8 @@ import org.springframework.data.annotation.CreatedDate;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-@XStreamAlias("words")
 @Entity
-// @Table(name="words")
+@Table(name="words")
 public class Word {
 	
 	@Id
@@ -27,39 +26,27 @@ public class Word {
 	@Column(nullable = false, name = "name")
     private String name;
 	
-	@Column(name = "description")
+	@Column(nullable = false, name = "description")
     private String description;
 	
-	@Column(name = "writer_id")
+	@Column(nullable = true, name = "writer_id")
     private String writer_id;
 	
-	@Column(name = "viewcount")
+	@Column(nullable = true, name = "viewcount")
     @ColumnDefault("0")
 	private Long viewcount;
 	
-	@Column(name = "likes")
+	@Column(nullable = true, name = "likes")
     @ColumnDefault("0")
 	private Long likes;
-	
-	private String date;
 
-	@Column(name = "written_date")
+	@Column(nullable = true, name = "date")
 	@CreatedDate
-	private Date written_date;
-	
-	private boolean sent;
+	private Date date;
 	
 	public Word() {
 		
 	}
-	
-	public boolean isSent() {
-        return sent;
-    }
-	
-	public void setSent(boolean sent) {
-        this.sent = sent;
-    }
 
 	public Long getWord_id() {
 		return word_id;
@@ -108,21 +95,13 @@ public class Word {
 	public void setLikes(Long likes) {
 		this.likes = likes;
 	}
-	
-	public String getDate() {
+
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public Date getWrittenDate() {
-		return written_date;
-	}
-
-	public void setWrittenDate(Date written_date) {
-		this.written_date = written_date;
 	}
 
 }

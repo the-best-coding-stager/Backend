@@ -15,7 +15,7 @@ public interface IWordService {
     
 	List<Word> getNewestWordsList(int page, int size);
 	
-	List<Word> getWordsByName(String name);
+	List<Word> getWordsByName(String name, int page, int size);
 	
 	HashMap<String, List<Word>> merge(List<Word> popularList, List<Word> newestList, List<Word> wordList);
 

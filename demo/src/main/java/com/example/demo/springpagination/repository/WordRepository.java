@@ -18,6 +18,10 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     
     Page<Word> findTop10ByOrderByDateDesc(Pageable pageReq);
     
+    Page<Word> findByWriterId(String writerId, Pageable pageReq);
+    
+    Page<Word> findByNameContaining(String name, Pageable pageReq);
+    
     default Page<Word> findPopular(Pageable pageReq) {
     	return findTop10ByOrderByLikesDesc(pageReq);
     }
@@ -26,18 +30,12 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     	return findTop10ByOrderByDateDesc(pageReq);
     }
 
-    @Query(value = "SELECT * FROM words WHERE writer_id=:writer_id", nativeQuery = true)
-    Page<Word> findByUserWords(@Param("writer_id") String writer_id, Pageable pageReq);
-
     default Page<Word> findByUser(User user, Pageable pageReq) {
-        return findByUserWords(user.getUser_id(), pageReq);
+        return findByWriterId(user.getUser_id(), pageReq);
     }
 
-    @Query(value = "SELECT * FROM words WHERE name LIKE CONCAT('%', :name, '%')", nativeQuery = true)
-    Page<Word> findByNameWords(@Param("name") String name, Pageable pageReq);
-
-    default Page<Word> findByName(String name, Pageable pageReq) {
-        return findByNameWords(name, pageReq);
+    default Page<Word> findName(String name, Pageable pageReq) {
+        return findByNameContaining(name, pageReq);
     }
     
 }

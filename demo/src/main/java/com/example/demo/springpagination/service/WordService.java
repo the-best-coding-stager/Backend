@@ -62,8 +62,13 @@ public class WordService implements IWordService{
 	}
 
 	@Override
-	public List<Word> getWordsByName(String name) {
-		return null;
+	public List<Word> getWordsByName(String name, int page, int size) {
+
+        PageRequest pageReq
+        = PageRequest.of(page, size);
+		
+        Page<Word> words = wordRepository.findName(name, pageReq);
+        return words.getContent();
 	}
 
 	@Override

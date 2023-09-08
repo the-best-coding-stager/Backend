@@ -29,8 +29,8 @@ public class Word {
 	@Column(nullable = false, name = "description")
     private String description;
 	
-	@Column(nullable = true, name = "writer_id")
-    private String writer_id;
+	@Column(nullable = true, name = "writerId")
+    private String writerId;
 	
 	@Column(nullable = true, name = "viewcount")
     @ColumnDefault("0")
@@ -73,11 +73,11 @@ public class Word {
 	}
 
 	public String getWriter_id() {
-		return writer_id;
+		return writerId;
 	}
 
-	public void setWriter_id(String writer_id) {
-		this.writer_id = writer_id;
+	public void setWriter_id(String writerId) {
+		this.writerId = writerId;
 	}
 
 	public Long getViewcount() {

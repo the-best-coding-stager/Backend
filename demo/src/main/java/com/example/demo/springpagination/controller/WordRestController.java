@@ -42,8 +42,8 @@ public class WordRestController {
     @GetMapping
     @ResponseBody
     public List<WordDto> getWords(
-            @PathVariable("page") @RequestParam(defaultValue="0") int page,
-            @PathVariable("size") @RequestParam(defaultValue="10") int size) {
+    		@RequestParam(value="page", defaultValue="0", required = false) int page,
+    		@RequestParam(value="size", defaultValue="10", required = false) int size) {
         List<Word> words = wordService.getWordsList(page, size);
         return words.stream()
           .map(this::convertToDto)
@@ -67,8 +67,8 @@ public class WordRestController {
     @GetMapping(path="/popular")
     @ResponseBody
     public List<WordDto> getPopularWords(
-            @RequestParam(value="page", defaultValue="0") int page,
-            @RequestParam(value="size", defaultValue="10") int size) {
+            @RequestParam(value="page", defaultValue="0", required = false) int page,
+            @RequestParam(value="size", defaultValue="10", required = false) int size) {
         
         List<Word> words = wordService.getPopularWordsList(page, size);
         return words.stream()
@@ -80,8 +80,8 @@ public class WordRestController {
     @GetMapping(path="/newest")
     @ResponseBody
     public List<WordDto> getNewestWords(
-            @PathVariable("page") @RequestParam(defaultValue="0") int page,
-            @PathVariable("size") @RequestParam(defaultValue="10") int size) {
+    		@RequestParam(value="page", defaultValue="0", required = false) int page,
+    		@RequestParam(value="size", defaultValue="10", required = false) int size) {
         
         List<Word> words = wordService.getNewestWordsList(page, size);
         return words.stream()
@@ -141,9 +141,12 @@ public class WordRestController {
 		wordService.deleteWord(word_id);
 	}
 	
-	@GetMapping(path="/name/{name}")
-	public List<Word> getWordsByName(@PathVariable String name) {
-		return wordService.getWordsByName(name);
+	@GetMapping(path="/search")
+	public List<Word> getWordsByName(
+			@RequestParam(value="name", defaultValue="", required = false) String name,
+			@RequestParam(value="page", defaultValue="0", required = false) int page,
+    		@RequestParam(value="size", defaultValue="10", required = false) int size) {
+		return wordService.getWordsByName(name, page, size);
 	}
 
     // DTO 변환

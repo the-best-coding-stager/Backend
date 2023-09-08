@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
@@ -41,6 +43,7 @@ public class Word {
 	private Long likes;
 
 	@Column(nullable = true, name = "date")
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date date;
 	
